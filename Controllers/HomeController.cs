@@ -38,6 +38,11 @@ namespace pertemuan1.Controllers
             return View("Ubah");
         }
 
+        public IActionResult link()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
