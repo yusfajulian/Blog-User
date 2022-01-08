@@ -11,7 +11,7 @@ namespace pertemuan1.Controllers
     {
         public IActionResult Index()
         {
-            var mobils = new List<Mobil>();
+            //var mobils = new List<Models.Mobil>();
             //IEnumerable<Mobil> mobils2 = new List<Mobil>();
 
             //mobils.Add(new Mobil
@@ -36,14 +36,14 @@ namespace pertemuan1.Controllers
             //ViewBag.mobils = mobils;
             //ViewData["nama"] = "Yusfaaa";
 
-            var banyakMobil = new Mobil[]
-            {
-                new Mobil{IDRegistrasi = 1,Tipe = "Sedan", Merek = "Toyota", Varian="FT86"},
-                new Mobil{IDRegistrasi = 2,Tipe = "SUV", Merek = "Toyota", Varian="RAV4"},
-                new Mobil{IDRegistrasi = 3,Tipe = "Sedan", Merek = "Honda", Varian="Accord"},
-                new Mobil{IDRegistrasi = 4,Tipe = "SUV", Merek = "Honda", Varian="CRV"},
-                new Mobil{IDRegistrasi = 5,Tipe = "Sedan", Merek = "Honda", Varian="City"},
-            };
+            //var banyakMobil = new Models.Mobil[]
+            //{
+            //    new Models.Mobil{ IDRegistrasi = 1, Tipe = "Sedan", Merek = "Toyota", Varian="FT86"},
+            //    new Models.Mobil{ IDRegistrasi = 2, Tipe = "SUV", Merek = "Toyota", Varian="RAV4"},
+            //    new Models.Mobil{ IDRegistrasi = 3, Tipe = "Sedan", Merek = "Honda", Varian="Accord"},
+            //    new Models.Mobil{ IDRegistrasi = 4, Tipe = "SUV", Merek = "Honda", Varian="CRV"},
+            //    new Models.Mobil{ IDRegistrasi = 5, Tipe = "Sedan", Merek = "Honda", Varian="City"},
+            //};
 
             //var cariMobil = banyakMobil.Single(x => x.IDRegistrasi == 1);
             //var cariMobil = banyakMobil.Where(x => x.Tipe == "Sedan");

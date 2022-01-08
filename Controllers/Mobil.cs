@@ -1,6 +1,6 @@
 ﻿namespace pertemuan1.Controllers
 {
-    internal class Mobi
+    internal class Mobil
     {
         public int IDRegistrasi { get; internal set; }
         public string Tipe { get; internal set; }
