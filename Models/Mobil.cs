@@ -7,7 +7,7 @@ namespace pertemuan1.Models
 {
     public class Mobil
     {
-        public int IDRegistrasi { get; set; }
+        public int id { get; set; }
         public string Tipe { get; set; }
         public string Merek { get; set; }
         public string Varian { get; set; }
