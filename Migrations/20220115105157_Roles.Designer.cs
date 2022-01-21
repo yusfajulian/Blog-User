@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using pertemuan1.Models;
 
 namespace pertemuan1.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220115105157_Roles")]
+    partial class Roles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,23 +83,6 @@ namespace pertemuan1.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Tb_Roles");
-                });
-
-            modelBuilder.Entity("pertemuan1.Models.User", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Jenis_kelamin")
-                        .HasColumnType("text");
-
-                    b.Property<string>("NamaUser")
-                        .HasColumnType("text");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Tb_User");
                 });
 #pragma warning restore 612, 618
         }
