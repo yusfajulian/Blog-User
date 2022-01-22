@@ -9,6 +9,7 @@ namespace pertemuan1.Controllers
 {
     public class MobilController : Controller
     {
+
         public IActionResult Index()
         {
             //var mobils = new List<Models.Mobil>();

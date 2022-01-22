@@ -3,7 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using pertemuan1.Models;
+using pertemuan1.Data;
 
 namespace pertemuan1.Migrations
 {
@@ -23,10 +23,8 @@ namespace pertemuan1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Author")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Contengt")
+                    b.Property<string>("Content")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreateDate")
@@ -36,31 +34,17 @@ namespace pertemuan1.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("id");
-
-                    b.ToTable("Tb_Blog");
-                });
-
-            modelBuilder.Entity("pertemuan1.Models.Mobil", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int?>("Userid")
                         .HasColumnType("int");
 
-                    b.Property<string>("Merek")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Tipe")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Varian")
-                        .HasColumnType("text");
-
                     b.HasKey("id");
 
-                    b.ToTable("Tb_Mobil");
+                    b.HasIndex("Userid");
+
+                    b.ToTable("Tb_Blog");
                 });
 
             modelBuilder.Entity("pertemuan1.Models.Roles", b =>
@@ -69,13 +53,7 @@ namespace pertemuan1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Nama")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Pasal")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Varian")
+                    b.Property<string>("Name")
                         .HasColumnType("text");
 
                     b.HasKey("id");
@@ -89,15 +67,44 @@ namespace pertemuan1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Jenis_kelamin")
+                    b.Property<string>("Email")
                         .HasColumnType("text");
 
-                    b.Property<string>("NamaUser")
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("Rolesid")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Username")
                         .HasColumnType("text");
 
                     b.HasKey("id");
 
+                    b.HasIndex("Rolesid");
+
                     b.ToTable("Tb_User");
+                });
+
+            modelBuilder.Entity("pertemuan1.Models.Blog", b =>
+                {
+                    b.HasOne("pertemuan1.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("Userid");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("pertemuan1.Models.User", b =>
+                {
+                    b.HasOne("pertemuan1.Models.Roles", "Roles")
+                        .WithMany()
+                        .HasForeignKey("Rolesid");
+
+                    b.Navigation("Roles");
                 });
 #pragma warning restore 612, 618
         }

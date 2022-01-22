@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using pertemuan1.Models;
+using pertemuan1.Data;
 
 namespace pertemuan1.Controllers
 {
@@ -15,6 +16,13 @@ namespace pertemuan1.Controllers
         {
             _context = context;
         }
+
+        public IActionResult Index()
+        {
+            var data = _context.Tb_Blog.ToList(); // Untuk menampilkan data = select *from tb_blog;
+            return View(data);
+        }
+
         public IActionResult Create()
         {
             return View();

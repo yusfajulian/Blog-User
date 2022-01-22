@@ -13,21 +13,16 @@ namespace pertemuan1.Models
         public int id { get; set; }
 
         [Required]
-        [DisplayName("JUDUL")]
         public string Title { get; set; }
 
         [Required]
-        [DisplayName("ISI")]
-        public string Contengt { get; set; }
+        public string Content { get; set; }
 
         [Required]
-        [DisplayName("AUTHORL")]
-        public string Author { get; set; }
-
-        [Required]
-        [DisplayName("TGL PEMBUATAN")]
         public DateTime CreateDate { get; set; }
-        public bool Status { get; set; }
 
+        [Required]
+        public bool Status { get; set; }
+        public User User { get; set; }
     }
 }

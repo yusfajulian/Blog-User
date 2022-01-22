@@ -7,8 +7,12 @@ namespace pertemuan1.Models
 {
     public class User
     {
-        public int id { get; internal set; }
-        public string NamaUser { get; internal set; }
-        public string Jenis_kelamin { get; internal set; }
+        [key]
+        public int id { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public Roles Roles { get; set; }
     }
 }

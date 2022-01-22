@@ -7,9 +7,8 @@ namespace pertemuan1.Models
 {
     public class Roles
     {
-        public int id { get; internal set; }
-        public string Nama { get; internal set; }
-        public string Pasal { get; internal set; }
-        public string Varian { get; internal set; }
+        [key]
+        public int id { get; set; }
+        public string Name { get; set; }
     }
 }
