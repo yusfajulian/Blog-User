@@ -32,7 +32,7 @@ namespace pertemuan1.Controllers
         public async Task<IActionResult> Create(Blog parameter)
         {
             if (ModelState.IsValid)
-            {
+            {   
                 // Proses masukan ke database
                 _context.Add(parameter);
                 _context.SaveChanges();
