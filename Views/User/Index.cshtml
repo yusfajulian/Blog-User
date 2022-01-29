@@ -1,21 +1,34 @@
 ﻿@model IEnumerable<User>
 
-<table>
-    <tr>
-        <th>ID      </th>
-        <th>USERNAME</th>
-        <th>PASSWORD</th>
-        <th>NAME    </th>
-        <th>EMAIL   </th>
-    </tr>
-    @foreach (var item in Model)
-    {
+
+<h3>Tb_User</h3>
+<hr />
+
+<table class="table table-dark">
+    <thead>
         <tr>
-            <td>@item.id</td>
-            <td>@item.Username</td>
-            <td>@item.Password</td>
-            <td>@item.Name</td>
-            <td>@item.Email</td>
+            <th>ID      </th>
+            <th>USERNAME</th>
+            <th>PASSWORD</th>
+            <th>NAME    </th>
+            <th>EMAIL   </th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.Username</td>
+                <td>@item.Password</td>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+            </tr>
+        }
+    </tbody>
 </table>
+<br />
+
+<h6>
+    <a asp-controller="Akun" asp-action="Daftar">Buat User Baru</a>
+</h6>

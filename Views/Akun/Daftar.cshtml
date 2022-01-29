@@ -3,42 +3,59 @@
     Layout = "_LayoutAkun";
 }
 
-<h4 class="text-center">SIGN IN</h4><hr /><br />
+<h4 class="text-center">SIGN IN</h4>
+<hr />
+<br />
+
 
 <div class="row">
     <div class="col-md-12">
         <form asp-action="Daftar" method="post">
             <div class="form-group">
                 <label asp-for="Username" class="control-label"></label>
-                <input asp-for="Username" placeholder="Username" class="form-control" />
+                <input asp-for="Username" placeholder="Masukan Username" class="form-control" />
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" placeholder="password" class="form-control" />
+                <input asp-for="Password" placeholder="Masukan Password" type="password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" placeholder="Nama lengkap" class="form-control" />
+                <input asp-for="Name" placeholder="Masukan Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" placeholder="Email" class="form-control" />
+                <input asp-for="Email" placeholder="Masukan Email" type="email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Daftar" class="btn btn-primary" />
+                <input type="submit" value="Sign In" class="btn btn-block py-2 btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-@section scripts{
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+<div class="social-auth-links text-center">
+    <p>- OR -</p>
+    <a asp-action="Daftar" class="btn btn-block btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+        </svg>
+        Buat akun
+    </a>
+    <a asp-action="Masuk" class="btn btn-block btn-danger">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+        </svg>
+        Sudah punya akun
+    </a>
+</div>

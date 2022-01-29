@@ -5,9 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using pertemuan1.Models;
 using pertemuan1.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace pertemuan1.Controllers
 {
+    [Authorize]
     public class BlogController : Controller
     {
         private readonly AppDbContext _context;

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using pertemuan1.Data;
 using pertemuan1.Models;
 using System;
@@ -25,12 +26,16 @@ namespace pertemuan1.Controllers
         [HttpPost]
         public async Task<IActionResult> DaftarAsync(User data)
         {
-            _context.Add(data);
-            _context.SaveChanges();
-            await _context.SaveChangesAsync();
+            if (ModelState.IsValid)
+            {
+                _context.Add(data);
+                _context.SaveChanges();
+                await _context.SaveChangesAsync();
 
-            //return RedirectToAction(controllerName: "Akun", actionName: "Masuk");
-            return Redirect("Masuk");
+                //return RedirectToAction(controllerName: "Akun", actionName: "Masuk");
+                return Redirect("Masuk");
+            }
+            return View(data);
         }
 
         public IActionResult Masuk()
@@ -55,7 +60,7 @@ namespace pertemuan1.Controllers
                 var password = _context.Tb_User.Where(bebas => bebas.Username == data.Username && bebas.Password == data.Password).FirstOrDefault(); // hanya dapat 1 data
                 if (password != null)
                 {
-                    return RedirectToAction(controllerName: "Blog", actionName: "Index");
+                    return RedirectToAction(controllerName: "Home", actionName: "Index");
                 }
                 ViewBag.pesan = "Password Anda Salah";
                 return View(data);

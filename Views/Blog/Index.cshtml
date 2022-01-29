@@ -1,26 +1,34 @@
 ﻿@model IEnumerable<Blog>
 
-<h3>
-    <a asp-action="Create">Buat Blog Baru</a>
-</h3>
-<hr />
+    <h3>Tb_Blog</h3>
+    <hr />
 
-<table>
-    <tr>
-        <th>ID</th>
-        <th>JUDUL</th>
-        <th>ISI</th>
-        <th>TGL DIBUAT</th>
-        <th>STATUS</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.id</td>
-            <td>@item.Title</td>
-            <td>@item.Content</td>
-            <td>@item.CreateDate</td>
-            <td>@item.Status</td>
-        </tr>
-    }
-</table>
+
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>JUDUL</th>
+                <th>ISI</th>
+                <th>TGL DIBUAT</th>
+                <th>STATUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.id</td>
+                    <td>@item.Title</td>
+                    <td>@item.Content</td>
+                    <td>@item.CreateDate</td>
+                    <td>@item.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+
+    <h6>
+        <a asp-action="Create">Buat Blog Baru</a>
+    </h6>
