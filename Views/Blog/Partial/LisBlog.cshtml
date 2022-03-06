@@ -1,0 +1,54 @@
+﻿@model BlogDashBoard
+
+<h3>Tb_Blog</h3>
+<hr />
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>JUDUL</th>
+            <th>ISI</th>
+            <th>TGL DIBUAT</th>
+            <th>STATUS</th>
+            <th>PENULIS</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.blog)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.Content</td>
+                <td>@item.CreateDate</td>
+                <td>@item.Status</td>
+                <td>@item.User.Username</td>
+                <td> <button style="background-color:green;"> <a asp-controller="Blog" asp-action="Ubah" asp-route-id="@item.Id">Edit</a></button></td>
+                <td>
+                    <button style="background-color: aqua">
+                        <a class="bi bi-trash" title="Detail" style="color:black;"
+                           onclick="if (!confirm('DETAIL\n\n DATA:\n ID : @item.Id \n JUDUL : @item.Title \n TGL DITULIS : @item.CreateDate\n PENULIS : @item.User.Name')) { return false; }">
+                           Detail
+                        </a>
+                    </button>
+                </td>
+                <td>
+                    <button style="background-color: red;">
+                        <a asp-action="hapus" asp-route-id="@item.Id"
+                           class="bi bi-trash" title="keluar" style="color:black;"
+                           onclick="if (!confirm('Yakin ingin menghapus blog dengan data sebagi berikut\n\n DATA:\n ID : @item.Id \n JUDUL : @item.Title \n PENULIS : @item.User.Name')) { return false;}">
+                            Hapus
+                        </a>
+                    </button>
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<br />

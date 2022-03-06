@@ -1,34 +1,9 @@
-﻿@model IEnumerable<Blog>
+﻿@model BlogDashBoard 
 
-    <h3>Tb_Blog</h3>
-    <hr />
+@await Html.PartialAsync("Partial/LisBlog")
 
+<h6>
+    <a asp-action="Create">Buat Blog Baru</a>
+</h6><hr />
 
-    <table class="table table-dark">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>JUDUL</th>
-                <th>ISI</th>
-                <th>TGL DIBUAT</th>
-                <th>STATUS</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.id</td>
-                    <td>@item.Title</td>
-                    <td>@item.Content</td>
-                    <td>@item.CreateDate</td>
-                    <td>@item.Status</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <br />
-
-    <h6>
-        <a asp-action="Create">Buat Blog Baru</a>
-    </h6>
+@await Html.PartialAsync("Partial/ListUser")

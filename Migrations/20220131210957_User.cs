@@ -4,7 +4,7 @@ using MySql.EntityFrameworkCore.Metadata;
 
 namespace pertemuan1.Migrations
 {
-    public partial class Blog : Migration
+    public partial class User : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,13 +12,12 @@ namespace pertemuan1.Migrations
                 name: "Tb_Roles",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<string>(type: "varchar(767)", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tb_Roles", x => x.id);
+                    table.PrimaryKey("PK_Tb_Roles", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -27,20 +26,20 @@ namespace pertemuan1.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Username = table.Column<string>(type: "text", nullable: true),
-                    Password = table.Column<string>(type: "text", nullable: true),
-                    Name = table.Column<string>(type: "text", nullable: true),
-                    Email = table.Column<string>(type: "text", nullable: true),
-                    Rolesid = table.Column<int>(type: "int", nullable: true)
+                    Username = table.Column<string>(type: "text", nullable: false),
+                    Password = table.Column<string>(type: "text", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Email = table.Column<string>(type: "text", nullable: false),
+                    RolesId = table.Column<string>(type: "varchar(767)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tb_User", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Tb_User_Tb_Roles_Rolesid",
-                        column: x => x.Rolesid,
+                        name: "FK_Tb_User_Tb_Roles_RolesId",
+                        column: x => x.RolesId,
                         principalTable: "Tb_Roles",
-                        principalColumn: "id",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -48,8 +47,7 @@ namespace pertemuan1.Migrations
                 name: "Tb_Blog",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<string>(type: "varchar(767)", nullable: false),
                     Title = table.Column<string>(type: "text", nullable: false),
                     Content = table.Column<string>(type: "text", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime", nullable: false),
@@ -58,7 +56,7 @@ namespace pertemuan1.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tb_Blog", x => x.id);
+                    table.PrimaryKey("PK_Tb_Blog", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Tb_Blog_Tb_User_Userid",
                         column: x => x.Userid,
@@ -73,9 +71,9 @@ namespace pertemuan1.Migrations
                 column: "Userid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tb_User_Rolesid",
+                name: "IX_Tb_User_RolesId",
                 table: "Tb_User",
-                column: "Rolesid");
+                column: "RolesId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

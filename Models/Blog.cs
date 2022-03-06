@@ -9,8 +9,8 @@ namespace pertemuan1.Models
 {
     public class Blog
     {
-        [Key]
-        public int id { get; set; }
+        [Key]   
+        public string Id { get; set; }
 
         [Required]
         public string Title { get; set; }
@@ -21,8 +21,19 @@ namespace pertemuan1.Models
         [Required]
         public DateTime CreateDate { get; set; }
 
-        [Required]
         public bool Status { get; set; }
         public User User { get; set; }
+    }
+    
+    public class BlogDashBoard
+    {
+        public List<Blog> blog { get; set; }
+        public List<User> user { get; set; }
+
+        public BlogDashBoard()
+        {
+            blog = new List<Blog>();
+            user = new List<User>();
+        }
     }
 }

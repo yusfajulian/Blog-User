@@ -8,7 +8,7 @@ namespace pertemuan1.Models
 {
     public class User
     {
-        [key]
+        [Key]
         public int id { get; set; }
         [Required]
         public string Username { get; set; }

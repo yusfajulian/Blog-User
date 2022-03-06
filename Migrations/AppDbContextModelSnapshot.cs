@@ -19,9 +19,8 @@ namespace pertemuan1.Migrations
 
             modelBuilder.Entity("pertemuan1.Models.Blog", b =>
                 {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(767)");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -40,7 +39,7 @@ namespace pertemuan1.Migrations
                     b.Property<int?>("Userid")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("Userid");
 
@@ -49,14 +48,13 @@ namespace pertemuan1.Migrations
 
             modelBuilder.Entity("pertemuan1.Models.Roles", b =>
                 {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(767)");
 
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Tb_Roles");
                 });
@@ -68,23 +66,27 @@ namespace pertemuan1.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("Rolesid")
-                        .HasColumnType("int");
+                    b.Property<string>("RolesId")
+                        .HasColumnType("varchar(767)");
 
                     b.Property<string>("Username")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("id");
 
-                    b.HasIndex("Rolesid");
+                    b.HasIndex("RolesId");
 
                     b.ToTable("Tb_User");
                 });
@@ -102,7 +104,7 @@ namespace pertemuan1.Migrations
                 {
                     b.HasOne("pertemuan1.Models.Roles", "Roles")
                         .WithMany()
-                        .HasForeignKey("Rolesid");
+                        .HasForeignKey("RolesId");
 
                     b.Navigation("Roles");
                 });

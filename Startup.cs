@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using pertemuan1.Data;
 using pertemuan1.Models;
+using pertemuan1.Repository.BlogRevository;
+using pertemuan1.Service.BlogService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,10 +33,19 @@ namespace pertemuan1
                 o.UseMySQL(Configuration.GetConnectionString("mysql")); //sesuaikan namanya
             });
 
-            services.AddAuthentication("CookieAuth").AddCookie("CookieAuth", options =>
-            {
-                options.LoginPath = "/Akun/Masuk";
-            });
+            services.AddAuthentication("CookieAuth")
+               .AddCookie("CookieAuth", options =>
+               {
+                   options.LoginPath = "/Akun/Masuk";
+                   options.AccessDeniedPath = "/Home/Dilarang";
+               }
+            );
+            // Mendaftarkan Repo
+            services.AddScoped<IBlogRevository, BlogRevository>();
+
+            // Mendaftarkan Service
+            services.AddScoped<IBlogService, BlogService>();
+
 
             services.AddControllersWithViews();
         }
@@ -57,15 +68,25 @@ namespace pertemuan1
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
+                endpoints.MapAreaControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    areaName:"Admin",
+                    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapAreaControllerRoute(
+                   name: "default",
+                   areaName: "User",
+                   pattern: "User/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                   name: "default",
+                   pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
