@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using pertemuan1.Data;
 using pertemuan1.Models;
 using pertemuan1.Repository.BlogRevository;
+using pertemuan1.Service;
 using pertemuan1.Service.BlogService;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,15 @@ namespace pertemuan1
 
             // Mendaftarkan Service
             services.AddScoped<IBlogService, BlogService>();
+
+            // daftar fileService
+            services.AddTransient<FileService>();
+
+            // Mendaftarkan EmailServe
+            services.AddTransient<EmailService>();
+
+            // Ambil data dari appsetting.json
+            services.Configure<Email>(Configuration.GetSection("AturEmail"));
 
 
             services.AddControllersWithViews();

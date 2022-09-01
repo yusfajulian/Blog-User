@@ -5,15 +5,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using pertemuan1.Helper;
+using Microsoft.AspNetCore.Http;
 
 namespace pertemuan1.Service.BlogService
 {
     public class BlogService : IBlogService
     {
         private readonly IBlogRevository _blogRevo;
-        public BlogService(IBlogRevository blogRevo)
+        private readonly FileService _file;
+        public BlogService(IBlogRevository blogRevo, FileService file)
         {
             _blogRevo = blogRevo;
+            _file = file;
         }
 
         // Tampil
@@ -24,7 +27,7 @@ namespace pertemuan1.Service.BlogService
 
         public async Task<List<Blog>> TampilSemuaBlog()
         {
-            return await _blogRevo.TampilSemuaDataBlogAsync();
+            return await _blogRevo.TampilSemuaDataBlogAsync();  
         }
 
         public async Task<List<User>> TampilSemuaUser()
@@ -32,11 +35,13 @@ namespace pertemuan1.Service.BlogService
             return await _blogRevo.TampilSemuaDataUser();
         }
 
-        public async Task<bool> BlogBaru(string username, Blog baru)
+        public async Task<bool> BlogBaru(string username, Blog baru, IFormFile fotonya)
         {
             baru.Id = BuatPrimary.buatPrimary();
             baru.CreateDate = DateTime.Now;
             baru.User = await _blogRevo.CariUsername(username);
+            baru.Image =await _file.SimpanFile(fotonya);
+            //baru.Image = _file.SimpanFile(fotonya).result;
 
             return await _blogRevo.BlogBaru(baru);
         }

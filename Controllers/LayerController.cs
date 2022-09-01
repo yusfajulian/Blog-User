@@ -33,17 +33,17 @@ namespace pertemuan1.Controllers
 
         [HttpPost]
         [Route("buat")]
-        public async Task<ActionResult<Blog>> BuatBlog(Blog data)
-        {
-            if (ModelState.IsValid)
-            {
-                string username = User.GetUsername().ToString();
-                await _blog.BlogBaru(username, data);
+        //public async Task<ActionResult<Blog>> BuatBlog(Blog data)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        string username = User.GetUsername().ToString();
+        //        await _blog.BlogBaru(username, data);
 
-                return RedirectToAction(controllerName: "Blog", actionName: "Index");
-            }
-            return View(data);
-        }
+        //        return RedirectToAction(controllerName: "Blog", actionName: "Index");
+        //    }
+        //    return View(data);
+        //}
 
         [Route("Ubah")]
         public async Task<ActionResult<Blog>> UbahBlog(string id)

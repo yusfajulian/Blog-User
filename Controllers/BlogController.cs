@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using pertemuan1.Helper;
 using pertemuan1.Service.BlogService;
+using Microsoft.AspNetCore.Http;
 
 namespace pertemuan1.Controllers
 {
@@ -41,7 +42,7 @@ namespace pertemuan1.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Blog parameter)
+        public async Task<IActionResult> Create(Blog parameter, IFormFile fotonya)
         {
             //if (ModelState.IsValid)
             //{
@@ -63,7 +64,7 @@ namespace pertemuan1.Controllers
             if (ModelState.IsValid)
             {
                 string username = User.GetUsername().ToString();
-                await _blog.BlogBaru(username, parameter);
+                await _blog.BlogBaru(username, parameter,fotonya);
 
                 return RedirectToAction(controllerName: "Blog", actionName: "Index");
             }
@@ -95,7 +96,7 @@ namespace pertemuan1.Controllers
         }
 
         public async Task<IActionResult> Ubah(string id)
-        {
+        {       
             var cari = await _blog.TampilkanBlogIdAsync(id);
             
             if (cari == null)

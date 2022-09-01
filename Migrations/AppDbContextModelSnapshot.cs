@@ -29,6 +29,9 @@ namespace pertemuan1.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("text");
+
                     b.Property<bool>("Status")
                         .HasColumnType("tinyint(1)");
 

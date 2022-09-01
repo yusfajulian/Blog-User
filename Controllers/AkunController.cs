@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using pertemuan1.Data;
+using pertemuan1.Helper;
 using pertemuan1.Models;
+using pertemuan1.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +17,12 @@ namespace pertemuan1.Controllers
     public class AkunController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly EmailService _email;
 
-        public AkunController(AppDbContext context)
+        public AkunController(AppDbContext context, EmailService e)
         {
             _context = context;
+            _email = e;
         }
 
         public IActionResult Daftar()
@@ -29,6 +33,10 @@ namespace pertemuan1.Controllers
         [HttpPost]
         public async Task<IActionResult> DaftarAsync(User data)
         {
+            int OTP = BanyakBantuan.ButaOTP();
+            _email.KirimEmail(data.Email, "Konfigurasi daftar", "<h1>Berhasul mendaftar</h1>" + OTP);
+
+
             if (ModelState.IsValid)
             {
                 _context.Add(data);

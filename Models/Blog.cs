@@ -12,7 +12,7 @@ namespace pertemuan1.Models
         [Key]   
         public string Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Ini harus di isi")]
         public string Title { get; set; }
 
         [Required]
@@ -22,6 +22,7 @@ namespace pertemuan1.Models
         public DateTime CreateDate { get; set; }
 
         public bool Status { get; set; }
+        public string Image { get; set; }
         public User User { get; set; }
     }
     
